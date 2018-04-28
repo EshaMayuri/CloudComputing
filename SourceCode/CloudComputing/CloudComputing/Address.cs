@@ -79,11 +79,44 @@ namespace CloudComputing
         /// <summary>
         /// Populates the distance matrix
         /// </summary>
-        public void PopulateGraph()
+        public void PopulateGraph(int count)
         {
-            int rows = addresses.Count();
-            int columns = addresses.Count();
+            
+            if(count == 0)
+            {
+                ComputeShortestPath(addresses);
+            }
+            else
+            {
+                SortedSet<Distance> minHeap = new SortedSet<Distance>(new CustomComparer());
+                Dictionary<int, string> addressList = new Dictionary<int, string>();
+                for (int i = 1; i < addresses.Count; i++)
+                {
+                    minHeap.Add(new Distance(Convert.ToInt32(FetchDistance(addresses[0].ToString(), addresses[i].ToString())), addresses[i]));
+                }
+                for (int j = 0; j < count; j++)
+                {
+                    if (j == 0)
+                    {
+                        addressList.Add(0, addresses[0]);
+                    }
+                    else
+                    {
+                        addressList.Add(j, minHeap.ElementAt(j).address1);
+                    }
+                }
+                ComputeShortestPath(addressList);
+            }
+
+        }
+
+        public void ComputeShortestPath(Dictionary<int, string> addressList)
+        {
+            List<Int32> output = new List<int>();
+            int rows = addressList.Count();
+            int columns = addressList.Count();
             distanceMatrix = new double[rows, columns];
+
 
             for (int i = 0; i < rows; i++)
             {
@@ -93,16 +126,30 @@ namespace CloudComputing
                     {
                         distanceMatrix[i, j] = 0;
                     }
-                    if (i != j & distanceMatrix[i,j] == 0 && distanceMatrix[j,i] == 0)
+                    if (i != j & distanceMatrix[i, j] == 0 && distanceMatrix[j, i] == 0)
                     {
-                        distanceMatrix[i, j] = FetchDistance(addresses[i].ToString(), addresses[j].ToString());
-                        distanceMatrix[j, i] = distanceMatrix[i,j];
+                        distanceMatrix[i, j] = FetchDistance(addressList[i].ToString(), addressList[j].ToString());
+                        distanceMatrix[j, i] = distanceMatrix[i, j];
                     }
                 }
             }
-            if (SortedAddresses != addresses)
+
+            if (SortedAddresses != addressList)
             {
-                SortedAddresses = addresses;
+                //SortedAddresses = addressList;
+                TSP tsp = new TSP();
+                tsp.MinCost(distanceMatrix, output);
+                for (int index = 0; index < output.Count; index++)
+                {
+                    if (index != output.Count - 1)
+                    {
+                        SortedAddresses.Add(index, addressList[output[index]]);
+                    }
+                    else
+                    {
+                        SortedAddresses.Add(index, addressList[0]);
+                    }
+                }
             }
         }
         /// <summary>
@@ -113,7 +160,7 @@ namespace CloudComputing
         /// <returns></returns>
         public double FetchDistance(string origin, string destination)
         {
-            string url = "https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + origin + "&destinations=" + destination + "&mode=driving&sensor=false&language=en-EN&units=imperial&api_key=AIzaSyDfWaD6yDIuntnmDfllvVhqOikJotTPCi4";
+            string url = "https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + origin + "&destinations=" + destination + "&mode=driving&sensor=false&language=en-EN&units=imperial&key=AIzaSyBYF1u3tTYq6RzlH0Gh75MIzv8w6WhHl5A";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             WebResponse response = request.GetResponse();
             Stream dataStream = response.GetResponseStream();
@@ -161,7 +208,37 @@ namespace CloudComputing
             {
                 // Process an error action here if needed  
             }
-            
+        }
+    }
+
+    public class Distance
+    {
+        public int dist;
+        public string address1;
+        public string address2;
+
+        public int Dist { get; set; }
+        public int Address1 { get; set; }
+        public string Address2 { get; set; }
+
+        public Distance(int dist, string address1)
+        {
+            this.dist = dist;
+            this.address1 = address1;
+            //this.address2 = address2;
+        }
+    }
+
+    public class CustomComparer : IComparer<Distance>
+    {
+
+        public int Compare(Distance x, Distance y)
+        {
+            if ((x.dist - y.dist) == 0)
+            {
+                return x.address1.CompareTo(y.address1);
+            }
+            return x.dist - y.dist;
         }
     }
 }

@@ -6,9 +6,9 @@
         <h1 style="margin-left:auto;margin-right:auto;">Optimized Route!</h1>
     </div>
     
-    <asp:GridView ID="GridView2" runat="server" ShowFooter="True" AutoGenerateColumns="False" CellPadding="1" ForeColor="#333333" GridLines="None" 
-            OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand" style="margin-left:auto; margin-right:auto;"  >
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+    <asp:GridView ID="GridView2" runat="server" ShowFooter="True" AutoGenerateColumns="False" CellPadding="1" GridLines="None" 
+            OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowCommand="GridView1_RowCommand" style="margin-left:auto; margin-right:auto;"  CssClass="table table-hover table-striped" >
+            
             <Columns>
                 <asp:TemplateField HeaderText="Id" SortExpression="Id"  ControlStyle-Width="0px" >
                     <EditItemTemplate>
@@ -29,16 +29,11 @@
                         <asp:Label ID="Label3" runat="server" Text='<%# Bind("address") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-            </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-        </asp:GridView>
+            </Columns>           
+    </asp:GridView>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <asp:Button ID="BtnShowMaps" runat="server" OnClick="BtnShowMaps_Click" Text="Show the location on Maps" class="btn btn-primary btn-lg"/>
+        </div>
+    </div>
 </asp:Content>

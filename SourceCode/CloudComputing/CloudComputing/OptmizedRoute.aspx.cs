@@ -66,6 +66,11 @@ namespace CloudComputing
 
             }
         }
+
+        protected void BtnShowMaps_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Route.aspx");
+        }
     }
 
 

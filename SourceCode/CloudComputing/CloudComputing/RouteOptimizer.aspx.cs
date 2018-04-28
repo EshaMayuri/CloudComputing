@@ -101,12 +101,25 @@ namespace CloudComputing
 
         protected void CalculateShortestPath(object sender, EventArgs e)
         {
-            for (int i = 0; i < requests.Count; i++)
+            if (requests.Count > 0)
             {
-                Address.Instance.AddAddress(requests[i].address);
+                for (int i = 0; i < requests.Count; i++)
+                {
+                    Address.Instance.AddAddress(requests[i].address);
+                }
+                int noOfPointsToProcess = 0;
+                if (!txtCount.Text.ToString().Equals(""))
+                {
+                    noOfPointsToProcess = Int32.Parse(txtCount.Text.ToString());
+                }
+                Address.Instance.PopulateGraph(noOfPointsToProcess);
+                Response.Redirect("OptmizedRoute.aspx");
             }
-            Address.Instance.PopulateGraph();
-            
+            else
+            {
+                string myStringVariable = "Please add the addresses!";
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
+            }
         }
     }
 }

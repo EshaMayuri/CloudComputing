@@ -76,50 +76,15 @@ namespace CloudComputing
         {
             string lat = "";
             string lng = "";
-            string url = "http://maps.google.com/maps/api/geocode/xml?address=" + address + "&sensor=false&api_key=AIzaSyBg_weOUun-dvJOfgcWVSCgnoce9UITwfA";
-            //string url = "http://maps.googleapis.com/maps/api/geocode/xml?address=" +address +"&sensor=true_or_false";
-            /* WebRequest request = WebRequest.Create(url);
-
-             using (WebResponse response = (HttpWebResponse)request.GetResponse())
-             {
-                 using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-                 {
-                     DataSet dsResult = new DataSet();
-                     dsResult.ReadXml(reader);
-                     DataTable dtCoordinates = new DataTable();
-                     dtCoordinates.Columns.AddRange(new DataColumn[4] { new DataColumn("Id", typeof(int)),
-                     new DataColumn("Address", typeof(string)),
-                     new DataColumn("Latitude",typeof(string)),
-                     new DataColumn("Longitude",typeof(string)) });
-                     foreach (DataRow row in dsResult.Tables["result"].Rows)
-                     {
-                         string geometry_id = dsResult.Tables["geometry"].Select("result_id = " + row["result_id"].ToString())[0]["geometry_id"].ToString();
-                         DataRow location = dsResult.Tables["location"].Select("geometry_id = " + geometry_id)[0];
-                         dtCoordinates.Rows.Add(row["result_id"], row["formatted_address"], location["lat"], location["lng"]);
-                         lat = location["lat"].ToString();
-                         lng = location["lng"].ToString();
-                     }
-                 }
-                 return lat + " " + lng;
-                 //return dtCoordinates;
-             }*/
+            string url = "https://maps.googleapis.com/maps/api/geocode/xml?address=" + address + "&sensor=false&key=AIzaSyBYF1u3tTYq6RzlH0Gh75MIzv8w6WhHl5A";
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-
             var response = (HttpWebResponse)httpRequest.GetResponse();
-
             var receiveStream = response.GetResponseStream();
-
             XmlDocument mySourceDoc = new XmlDocument();
-
             mySourceDoc.Load(receiveStream);
-
             lat = mySourceDoc.GetElementsByTagName("lat").Item(0).InnerText;
             lng = mySourceDoc.GetElementsByTagName("lng").Item(0).InnerText;
-
-            //lat = mySourceDoc.ChildNodes.Item(1).ChildNodes.Item(1).ChildNodes.Item(10).ChildNodes.Item(0).ChildNodes[0].InnerText.Trim();
-            //lng = mySourceDoc.ChildNodes.Item(1).ChildNodes.Item(1).ChildNodes.Item(10).ChildNodes.Item(0).ChildNodes[1].InnerText.Trim();
             receiveStream.Close();
-
             return lat + " " + lng;
         }
     }

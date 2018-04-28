@@ -3,19 +3,21 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
     <div class="jumbotron">
-        <h1 style="margin-left:auto;margin-right:auto;">Maps Route</h1>
+        <h1 class="text-center">Maps Route</h1>
     </div>
-    <div style="text-align:center;padding-top:20px;">
-        <asp:Button ID="BtnShowMaps" runat="server" OnClick="BtnShowMaps_Click" Text="Show the location on Maps" />
-    </!--div>
-
-    <div style="padding-top:20px;">
-        <div id="dvMap" style="width: 1097px; height: 800px; margin-left: 127px;"></div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <asp:Button ID="BtnShowMaps" runat="server" OnClick="BtnShowMaps_Click" Text="Show the location on Maps" class="btn btn-primary btn-lg"/>
+        </div>
     </div>
 
+    <div class="row">
+        <div id="dvMap" style=" height: 800px;" class="col-md-12"></div>
+    </div>
 
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg_weOUun-dvJOfgcWVSCgnoce9UITwfA&callback=initMap"></script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYF1u3tTYq6RzlH0Gh75MIzv8w6WhHl5A&callback=initMap"></script>
     <script type="text/javascript">
         var markers = [
             <asp:Repeater ID="rptMarkers" runat="server">
@@ -58,7 +60,7 @@
                     map: map,
                     title: data.title
                 });
-                alert("in loop")
+                //alert("in loop")
                 google.maps.event.addListener(marker, "click", (function (marker, i) {
                     infoWindow.setContent(data.description);
                     infoWindow.open(map, marker);
