@@ -2,8 +2,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div class="jumbotron">
-        <h1 class="text-center">Maps Route</h1>
+    <div>
+        <h1 class="text-center" style="color:#2a6496;">Maps Route</h1>
     </div>
     <div class="row">
         <div class="col-md-12 text-center">
@@ -53,14 +53,14 @@
                 travelMode: 'DRIVING'
             };
             for (i = 0; i < markers.length; i++) {
+                alert("in loop")
                 var data = markers[i]
-                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: data.title
-                });
-                //alert("in loop")
+                    var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                        title: data.title
+                    });
                 google.maps.event.addListener(marker, "click", (function (marker, i) {
                     infoWindow.setContent(data.description);
                     infoWindow.open(map, marker);

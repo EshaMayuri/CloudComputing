@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows;
+using System.Xml;
 
 namespace CloudComputing
 {
@@ -120,6 +123,89 @@ namespace CloudComputing
                 string myStringVariable = "Please add the addresses!";
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + myStringVariable + "');", true);
             }
+        }
+
+        protected void BtnLoadData_Click(object sender, EventArgs e)
+        {
+            if (FileUpload.HasFile)
+            {
+                string fileExtension = System.IO.Path.GetExtension(FileUpload.FileName);
+                if (fileExtension.ToLower() != ".xml")
+                {
+                    lblMessage.Text = "Only files with .xml extension are allowed";
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    int fileSize = FileUpload.PostedFile.ContentLength;
+                    if (fileSize > 2097152)
+                    {
+                        lblMessage.Text = "Maximum file size(2MB) exceeded";
+                        lblMessage.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        string path = @"/Data/"+FileUpload.FileName;
+                        FileUpload.SaveAs(Server.MapPath(path));
+                        lblMessage.Text = "Data uploaded";
+                        lblMessage.ForeColor = System.Drawing.Color.Green;
+                        PopulateData(FileUpload.FileName);
+                    }
+                }
+            }
+            else
+            {
+                lblMessage.Text = "Please select a file to upload";
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+            }
+        }
+
+        private void PopulateData(string fileName)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlNodeList xmlNodeList;
+            string path = AppDomain.CurrentDomain.BaseDirectory +"Data\\" + fileName;
+
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            xmlDoc.Load(fs);
+            xmlNodeList = xmlDoc.GetElementsByTagName("Addresses");
+            for (int i = 0; i < xmlNodeList.Count; i++)
+            {
+                xmlNodeList[i].ChildNodes.Item(0).InnerText.Trim();
+                string address = xmlNodeList[i].ChildNodes.Item(1).InnerText.Trim().ToString();
+                InsertData(address);
+            }
+            fs.Close();
+        }
+
+        private void InsertData(string address)
+        {
+            int requestId = 0;
+            requests = new List<Request>();
+            requests = (List<Request>)Session["state"];
+            //string address = ((TextBox)GridView1.FooterRow.FindControl("txtAddress")).Text;
+            if (!string.IsNullOrEmpty(address))
+            {
+                if (requests[requests.Count - 1] != null)
+                {
+                    requestId = requests.Count() + 1;
+                }
+                else
+                {
+                    requests = new List<Request>();
+                    requestId = 1;
+                }
+                request = new Request(requestId, address);
+                requests.Add(request);
+
+            }
+
+            Session["state"] = requests;
+
+            Session["Check_Page_Refresh"] = DateTime.Now.ToString();
+
+            GridView1.DataSource = requests;
+            GridView1.DataBind();
         }
     }
 }

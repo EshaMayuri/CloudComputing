@@ -2,8 +2,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-    <div class="jumbotron">
-        <h1 class="text-center">Add addresses here!</h1>
+    <div> <!--class="jumbotron"-->
+        <h1 class="text-center" style="color:#2a6496;">Add addresses here!</h1>
     </div>
 
     <h2 class="col-md-12"></h2>
@@ -51,11 +51,35 @@
     </div>
 
     <div class="row"> 
+        <div class="col-md-12" style="text-align:center; color:#116779">    
+            <h4>-----OR-----</h4>                  
+        </div>
+    </div>
+
+    <div class="row" style="margin-left:41%">
+        <div class="col-md-12 text-center">
+            <asp:FileUpload ID ="FileUpload" runat="server" Display="Dynamic"/>
+            &nbsp;            
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12 text-center">
+           <asp:Button ID="BtnXMLData" runat="server" OnClick="BtnLoadData_Click" Text="Load Data" class="btn btn-primary"/>
+            <asp:Label ID="lblMessage" runat="server" Font-Bold="true"></asp:Label>
+        </div>
+    </div>
+
+    <div class="row"> 
         <div class="col-md-12">                      
             <h2></h2>
         </div>
     </div>
-
+    <div class="row"> 
+        <div class="col-md-12">                      
+            <h2></h2>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12 text-center"> 
             
@@ -78,7 +102,7 @@
         </div>
     </div>
 
-
+    
     
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js">
 
@@ -91,4 +115,5 @@
             var places = new google.maps.places.Autocomplete(input, options);
         });
     </script>
+    </div>
 </asp:Content>

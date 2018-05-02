@@ -2,8 +2,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div class="jumbotron">
-        <h1 style="margin-left:auto;margin-right:auto;">Optimized Route!</h1>
+    <div>
+        <h1 class="text-center" style="color:#2a6496;">Optimized Route!</h1>
     </div>
     
     <asp:GridView ID="GridView2" runat="server" ShowFooter="True" AutoGenerateColumns="False" CellPadding="1" GridLines="None" 

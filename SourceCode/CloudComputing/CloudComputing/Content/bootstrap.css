@@ -70,6 +70,8 @@ a:hover {
   outline: 0;
 }
 
+
+
 h1 {
   margin: 0.67em 0;
   font-size: 2em;
@@ -345,6 +347,11 @@ a:focus {
   text-decoration: underline;
 }
 
+a:current {
+        color: #2a6496;
+        text-decoration: underline;
+    }
+
 a:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
@@ -557,9 +564,9 @@ h4 small,
 }
 
 .page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
-  border-bottom: 1px solid #eeeeee;
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #c6e6f2;
 }
 
 ul,
@@ -3282,6 +3289,7 @@ input[type="button"].btn-block {
   background-color: #428bca;
 }
 
+
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
@@ -3827,12 +3835,18 @@ textarea.input-group-sm > .input-group-btn > .btn {
   background-color: #eeeeee;
 }
 
+.nav > li > a:active {
+        text-decoration: none;
+        background-color: #eeeeee;
+    }
+
 .nav > li.disabled > a {
   color: #999999;
 }
 
 .nav > li.disabled > a:hover,
-.nav > li.disabled > a:focus {
+.nav > li.disabled > a:focus,
+.nav > li.disabled >a:active{
   color: #999999;
   text-decoration: none;
   cursor: not-allowed;
@@ -3841,10 +3855,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .nav .open > a,
 .nav .open > a:hover,
-.nav .open > a:focus {
-  background-color: #eeeeee;
-  border-color: #428bca;
-}
+.nav .open > a:focus,
+.nav .open > a:active {
+        background-color: #eeeeee;
+        border-color: #428bca;
+    }
 
 .nav .nav-divider {
   height: 1px;
@@ -3873,9 +3888,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-radius: 4px 4px 0 0;
 }
 
-.nav-tabs > li > a:hover {
-  border-color: #eeeeee #eeeeee #dddddd;
-}
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:active {
+        border-color: #eeeeee #eeeeee #dddddd;
+    }
 
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
@@ -4393,10 +4409,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
-  background-color: transparent;
-}
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:active {
+        color: #5e5e5e;
+        background-color: transparent;
+    }
 
 .navbar-default .navbar-text {
   color: #777777;
@@ -4928,10 +4945,10 @@ a.list-group-item.active > .badge,
 }
 
 .jumbotron {
-    padding: 80px;
+    padding: 70px;
     margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 200;
+    font-size: 14px;
+    font-weight: 100;
     line-height: 2.1428571435;
     color: inherit;
     background-color: #eeeeee;

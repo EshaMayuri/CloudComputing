@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AddressDetails>
+  <Addresses>
+    <Id>1</Id>
+    <Address>7600 Shawnee Mission Pkwy, Overland Park, KS 66202</Address>
+  </Addresses>
+  <Addresses>
+    <Id>2</Id>
+    <Address>Starbucks, 6402 Johnson Dr, Mission, KS 66202</Address>
+  </Addresses>
+  <Addresses>
+    <Id>3</Id>
+    <Address>Baskin-Robbins, 5425 Johnson Dr, Mission, KS 66205</Address>
+  </Addresses>
+  <Addresses>
+    <Id>4</Id>
+    <Address>Starbucks, 6920 Mission Rd, Prairie Village, KS 66208</Address>
+  </Addresses>
+  <Addresses>
+    <Id>5</Id>
+    <Address>Shawnee Mission Medical Center</Address>
+  </Addresses>
+  <Addresses>
+    <Id>6</Id>
+    <Address>Sarpino's Pizzeria Shawnee, 6232 Nieman Rd, Shawnee, KS 66203</Address>
+  </Addresses>
+  <Addresses>
+    <Id>7</Id>
+    <Address>Merriam Town Center / Merriam Village, 8000 Johnson Dr, Merriam, KS 66202</Address>
+  </Addresses>
+</AddressDetails>

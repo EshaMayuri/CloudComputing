@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AddressDetails>
+  <Addresses>
+    <Id>1</Id>
+    <Address>2525 Iowa street, lawrence, kansas</Address>
+  </Addresses>
+  <Addresses>
+    <Id>2</Id>
+    <Address>7600 Shawnee Mission Parkway</Address>
+  </Addresses>
+  <Addresses>
+    <Id>3</Id>
+    <Address>1205 University Ave, Columbia, Missouri</Address>
+  </Addresses>
+  <Addresses>
+    <Id>4</Id>
+    <Address>Miller Nichols Library, East 51st Street, Kansas City, MO</Address>
+  </Addresses>
+  <Addresses>
+    <Id>5</Id>
+    <Address>Life Time Fitness, 138th Street, Overland Park, KS</Address>
+  </Addresses>
+  <Addresses>
+    <Id>6</Id>
+    <Address>AMC DINE-IN Studio 28, South Strang Line Road, Olathe, KS</Address>
+  </Addresses>
+</AddressDetails>

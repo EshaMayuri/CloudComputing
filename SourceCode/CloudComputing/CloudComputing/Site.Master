@@ -51,7 +51,7 @@
                 </div>
                 <div class="
                     ">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" style="text-decoration-color:white">
                         <li><a runat="server" href="~/RouteOptimizer">Route Optimizer</a></li>
                         <li><a runat="server" href="~/OptmizedRoute">Optimized Route</a></li>
                         <li><a runat="server" href="~/Route">Maps</a></li>
@@ -65,8 +65,8 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+            <footer style="text-align:center;color:#116779;">
+                <p>&copy; <%: DateTime.Now.Year %> - Route Optmization for Pothole Repair</p>
             </footer>
         </div>
 

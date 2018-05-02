@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="CloudComputing.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Route Optimization for Pothole Repair</h2> 
+    <h2 style="color:#2a6496;">Route Optimization for Pothole Repair</h2> 
     
     <h4><u>About the application.</u></h4>
     
